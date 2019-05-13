@@ -34,7 +34,6 @@ Headers
 Accept:application/json
 Content-Type:application/json
 ```
-----
 ```
 Payload
 ```
@@ -45,7 +44,6 @@ Payload
 }
 ```
 
-----
 ```
 Response
 ```
@@ -77,7 +75,6 @@ Accept:application/json
 Content-Type:application/json
 X-Torpedoes:2
 ```
-----
 ```
 Response
 ```
@@ -87,6 +84,10 @@ Response
     "block": "1000100 1100101 1110100 1100101 1101110 1110100 1101001 1101111 1101110 100000 1000010 1101100 1101111 1100011 1101011 100000 1010010 1000100 101101 110001 110000 110010 110100"
 }
 ```
+If you are using postman import:
+- [Postman Collections](postman/Death%20Star.postman_collection.json)
+- [Postman Environment](postman/Death%20Start.postman_environment.json)
+
 # Tests
 - Run tests
 ```
