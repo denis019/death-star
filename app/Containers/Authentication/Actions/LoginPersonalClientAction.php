@@ -32,9 +32,11 @@ class LoginPersonalClientAction extends Action
             PersonalClientDto::FORCE_SCOPE
         ]);
 
+        $expireDateTime = $oauthToken->token->expires_at->getTimestamp();
+
         return OauthBearerResponseDto::make([
             'tokenType' => 'Bearer',
-            'expiresIn' => '',
+            'expiresIn' => $expireDateTime - (new \DateTime())->getTimestamp(),
             'accessToken' => $oauthToken->accessToken,
             'scope' => PersonalClientDto::FORCE_SCOPE,
         ]);
