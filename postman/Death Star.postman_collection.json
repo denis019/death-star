@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "23b3cab9-fb9e-44da-b9a7-dfad14e4b31a",
+		"name": "Death Star",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63d400e2-b3cb-4d63-b123-0fe1eaf14e62",
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"token\", 'Bearer ' + jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"client_secret\":\"nLuqtHFMXRSvlu1XK2XnvkDaj6YTiKotICq7w1TS\",\n\t\"client_id\":\"1\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrlApi}}/v1/token",
+							"host": [
+								"{{baseUrlApi}}"
+							],
+							"path": [
+								"v1",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reactor",
+			"item": [
+				{
+					"name": "ExhaustReactor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4282c019-2662-45b5-aa14-7e3f2bb42d22",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Torpedoes",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrlApi}}/v1/reactor/exhaust/22",
+							"host": [
+								"{{baseUrlApi}}"
+							],
+							"path": [
+								"v1",
+								"reactor",
+								"exhaust",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prisoner",
+			"item": [
+				{
+					"name": "GetPrisoner",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrlApi}}/v1/prisoner/sophia.wisoky",
+							"host": [
+								"{{baseUrlApi}}"
+							],
+							"path": [
+								"v1",
+								"prisoner",
+								"sophia.wisoky"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

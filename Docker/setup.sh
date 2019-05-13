@@ -13,7 +13,9 @@ echo "Starting Docker..."
 export MSYS_NO_PATHCONV=1;
 docker-compose up --build -d
 docker exec ds_php_fpm composer install
-docker exec ds_php_fpm php artisan migrate
+docker exec ds_php_fpm php artisan migrate:fresh --seed
+docker exec ds_php_fpm php artisan authentication:create:oauth-personal-client
+docker exec ds_php_fpm php artisan passport:keys
 docker exec ds_php_fpm chgrp -R www-data storage bootstrap/cache
 docker exec ds_php_fpm chmod -R ug+rwx storage bootstrap/cache
 
