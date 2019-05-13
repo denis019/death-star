@@ -1,0 +1,7 @@
+{
+  "name": "death-star/authentication",
+  "description": "Death Star Authentication Container.",
+  "require": {
+    "laravel/passport": "~5.0"
+  }
+}

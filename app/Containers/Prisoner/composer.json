@@ -1,0 +1,11 @@
+{
+  "name": "death-star/prisoner",
+  "description": "Death Star prisoner container",
+  "require": {
+  },
+  "autoload": {
+    "files": [
+      "Helpers/helpers.php"
+    ]
+  }
+}

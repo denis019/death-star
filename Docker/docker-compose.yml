@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+
+### php-fpm Server #########################################
+  ds_php_fpm:
+    container_name: ds_php_fpm
+    build:
+      context: ./php/dev
+    environment:
+      XDEBUG_CONFIG: remote_host=172.17.0.1
+      PHP_IDE_CONFIG: serverName=death.star.api
+    volumes:
+      - ../:/var/www/death-star
+
+### NGINX Server #########################################
+  ds_nginx:
+    container_name: ds_nginx
+    build:
+      context: ./nginx/dev
+    volumes:
+      - ../:/var/www/death-star
+      - ./nginx/dev/config/death.star.api.conf:/etc/nginx/conf.d/death.star.api.conf
+      - ./nginx/dev/ssl:/etc/nginx/ssl/
+      - ./logs/nginx/:/var/log/nginx/
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - ds_php_fpm
+
+### MySQL ################################################
+  ds_mysql:
+    container_name: ds_mysql
+    build:
+      dockerfile: Dockerfile
+      context: ./mysql
+    environment:
+      - MYSQL_DATABASE=deathstar
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=docker
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./mysql/data:/data/
+    ports:
+      - "3306:3306"
